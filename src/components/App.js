@@ -1,8 +1,26 @@
 import React, { Component } from 'react';
 
-const Item = ({ todoName, changeHandler }) => <input onChange={ changeHandler } value={ todoName }></input>
-const Submit = ({ name }) => <button type="submit">{ name }</button>
-const ToDo = ({ todo }) => <li>{ todo.content }</li>
+const Item = ({ todoName, changeHandler, clearHandler }) => {
+  return(
+    <input
+      onClick={ clearHandler }
+      onChange={ changeHandler }
+      value={ todoName }>
+    </input>
+  )
+}
+
+const Submit = ({ name }) => {
+  return(
+    <button type="submit">{ name }</button>
+  )
+}
+
+const ToDo = ({ todo }) => {
+  return (
+    <li>{ todo.content }</li>
+  )
+}
 
 class App extends Component {
   constructor( props ) {
@@ -37,12 +55,22 @@ class App extends Component {
     })
   }
 
+  clearHandler = () => {
+    this.setState({
+      newTodo: ''
+    })
+  }
+
   render() {
     return (
       <div>
         <div>My ToDo</div>
           <form onSubmit={this.addToDo}>
-            <Item changeHandler={ this.changeHandler } todoName={ this.state.newTodo }/>
+            <Item
+              changeHandler={ this.changeHandler }
+              todoName={ this.state.newTodo }
+              clearHandler={ this.clearHandler }
+            />
             <Submit name="Add" />
           </form>
           <div>

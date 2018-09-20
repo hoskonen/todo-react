@@ -10,9 +10,13 @@ const Item = ({ todoName, changeHandler, clearHandler }) => {
   )
 }
 
-const Submit = ({ name }) => {
+const Submit = ({ name, newTodo }) => {
   return(
-    <button type="submit">{ name }</button>
+    <button
+      type="submit">
+      {/* disabled={ !newTodo }> */}
+      { name }
+    </button>
   )
 }
 
@@ -46,8 +50,8 @@ class App extends Component {
       todos: todos,
       newTodo: ''
     })
-
   }
+
 
   changeHandler = (event) => {
     this.setState({

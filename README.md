@@ -11,9 +11,10 @@ How To Get Rollin'
 * Prepare to get bored!
 
 
-Future Feats
+Next
 ---------------
-* Priority
+* Add TypeScript
+* Priority for items
 * Proper Ids for items
 * Item deletion
 * Theming and some nice UI

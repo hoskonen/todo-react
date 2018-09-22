@@ -1,0 +1,89 @@
+:root {
+  --mainColor: #ff9800;
+  --mainColorHov: fuschia;
+}
+
+body {
+  background: #efefef;
+}
+
+h1 {
+  justify-content: center;
+  display: flex;
+  color: var(--mainColor);
+}
+
+.note {
+  font-size: 10px;
+  width: 53%;
+  display: block;
+  justify-content: center;
+  text-align: left;
+  position: relative;
+  margin: 0 auto;
+  color: darkgray;
+  padding: .5em;
+}
+
+input {
+  padding: 1em;
+  width: 50%;
+  font-size: 20px;
+}
+
+button {
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.form {
+  justify-content: center;
+  display: flex;
+  flex: 0 1 100%;
+}
+
+.input-area {
+  flex: 0 1 100%;
+}
+
+.items {
+  display: flex;
+  flex: 0 1 100%;
+  justify-content: center;
+}
+
+.todos {
+  flex: 0 1 100%;
+  justify-content: center;
+}
+
+.todos li {
+  display: block;
+  border: 5px solid var(--mainColor);
+  margin: 5px;
+  padding: 10px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 30px;
+  background: linear-gradient(to right,
+    var(--mainColor) 0%,
+    var(--mainColor) 5px,
+    transparent 5px);
+  background-repeat: repeat-x;
+  background-size: 100%;
+}
+
+.todos li:hover {
+  background:
+    linear-gradient(to right,
+    var(--mainColor) 0%,
+    var(--mainColor) 5px,
+    transparent);
+  text-decoration: line-through;
+  border: 5px solid peachpuff;
+}

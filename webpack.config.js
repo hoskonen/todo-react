@@ -18,15 +18,15 @@ const _module = {
       use: {
         loader: 'babel-loader'
       }
+    }, {
+      test: /\.css$/,
+      exclude: /node_modules/,
+      use: ['style-loader', 'css-loader']
     }
   ]
 }
 
-const plugins = [
-  new htmlWebpackPlugin({
-    template: './src/index.html'
-  })
-]
+const plugins = [new htmlWebpackPlugin({template: './src/index.html'})]
 
 // Common JS
 module.exports = {

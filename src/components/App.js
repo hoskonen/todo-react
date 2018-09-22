@@ -1,23 +1,14 @@
 import React, {Component} from 'react';
 
-const Item = ({todoName, changeHandler, clearHandler}) => {
+const Input = ({todoName, changeHandler, clearHandler, placeHolder}) => {
   return (
-    <input onClick={clearHandler} onChange={changeHandler} value={todoName}></input>
+    <input placeholder={placeHolder} onClick={clearHandler} onChange={changeHandler} value={todoName}></input>
   )
 }
 
-const Submit = ({name, newTodo}) => {
+const ToDo = ({todo, deleteItem}) => {
   return (
-    <button type="submit">
-      {/* disabled={ !newTodo }> */}
-      {name}
-    </button>
-  )
-}
-
-const ToDo = ({todo}) => {
-  return (
-    <li>{todo.content}</li>
+    <li onClick={deleteItem}>{todo.content}</li>
   )
 }
 
@@ -27,16 +18,18 @@ class App extends Component {
     this.state = {
       todos: [],
       value: '',
-      newTodo: 'Watcha goin to do?'
+      newTodo: '',
+      ph: 'Watcha goin to do?'
     }
   }
 
   addToDo = (event) => {
     event.preventDefault()
-
+    const {newTodo} = this.state.newTodo
     const toDoObj = {
       content: this.state.newTodo,
-      id: this.state.todos.length + 1
+      id: this.state.todos.length + 1,
+      priority: 1
     }
 
     const todos = this
@@ -44,8 +37,14 @@ class App extends Component {
       .todos
       .concat(toDoObj)
 
-    this.setState({todos: todos, newTodo: ''})
-  }
+      if (toDoObj.content.length != 0) {
+        this.setState({todos: todos, newTodo: ''})
+      }
+      else {
+        false
+      }
+
+    }
 
   changeHandler = (event) => {
     this.setState({newTodo: event.target.value})
@@ -55,24 +54,38 @@ class App extends Component {
     this.setState({newTodo: ''})
   }
 
+  removeItem = ({todo, todos}) => {
+
+  }
+
+  renderToDos = (todo) => {
+    return (
+      this
+        .state
+        .todos
+        .map(todo => <ToDo key={todo.id} todo={todo} />)
+    )
+  }
+
   render() {
+
     return (
       <div>
-        <div>My ToDo</div>
-        <form onSubmit={this.addToDo}>
-          <Item
-            changeHandler={this.changeHandler}
-            todoName={this.state.newTodo}
-            clearHandler={this.clearHandler}/>
-          <Submit name="Add"/>
-        </form>
-        <div>
-          <ul>
-            {this
-              .state
-              .todos
-              .map(todo => <ToDo key={todo.id} todo={todo}/>)}
-          </ul>
+        <h1>_helping demented people since '79</h1>
+        <div className="container">
+          <form className="form" onSubmit={this.addToDo}>
+            <Input
+              changeHandler={this.changeHandler}
+              todoName={this.state.newTodo}
+              clearHandler={this.clearHandler}
+              placeHolder={this.state.ph} />
+          </form>
+
+          <div className="items">
+            <ul className="todos">
+              {this.renderToDos()}
+            </ul>
+          </div>
         </div>
       </div>
     );

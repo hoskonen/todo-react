@@ -7,65 +7,85 @@ body {
   background: #efefef;
 }
 
+#app {
+  display: flex;
+  justify-content: center;
+}
+
 h1 {
   justify-content: center;
   display: flex;
   color: var(--mainColor);
 }
 
-.note {
-  font-size: 10px;
-  width: 53%;
-  display: block;
-  justify-content: center;
-  text-align: left;
-  position: relative;
-  margin: 0 auto;
-  color: darkgray;
-  padding: .5em;
-}
-
 input {
   padding: 1em;
-  width: 50%;
+  flex: 1;
   font-size: 20px;
+  border: 3px solid darkorange;
 }
 
 button {
   cursor: pointer;
+  border: 0;
+  border-left: 0;
+  border-right: 0;
+  background-color: white;
+  flex: 1 5 100%;
 }
 
-.container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+button.low {
+  border-bottom: 3px solid darkorange;
+  border-top: 3px solid darkorange;
+}
+
+button.low:hover {
+  background-color: darkorange;
+}
+
+button.med {
+  border-bottom: 3px solid coral;
+  border-top: 3px solid coral;
+}
+
+button.med:hover {
+  background-color: coral;
+}
+
+button.high {
+  border-bottom: 3px solid red;
+  border-top: 3px solid red;
+  border-right: 3px solid red;
+}
+
+button.high:hover {
+  background-color:  red;
 }
 
 .form {
   justify-content: center;
   display: flex;
-  flex: 0 1 100%;
 }
 
-.input-area {
-  flex: 0 1 100%;
+span {
+  font-size: 10px;
+  background: ivory;
+  padding: .5em;
+  margin-top: .3em;
+  color: darkgrey;
+  display: block;
+  border: 1px solid darkorange;
 }
 
-.items {
-  display: flex;
-  flex: 0 1 100%;
-  justify-content: center;
+ul {
+  padding: 0;
+  flex: 1 1 100%;
 }
 
-.todos {
-  flex: 0 1 100%;
-  justify-content: center;
-}
-
-.todos li {
+li {
   display: block;
   border: 5px solid var(--mainColor);
-  margin: 5px;
+  margin: 5px 0;
   padding: 10px;
   cursor: pointer;
   text-align: center;
@@ -78,7 +98,7 @@ button {
   background-size: 100%;
 }
 
-.todos li:hover {
+li:hover {
   background:
     linear-gradient(to right,
     var(--mainColor) 0%,

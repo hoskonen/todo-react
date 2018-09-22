@@ -12,6 +12,12 @@ const ToDo = ({todo, deleteItem}) => {
   )
 }
 
+const PrioBtn = ({name, clickHandler, btnStyle}) => {
+  return (
+    <button className={btnStyle} onClick={clickHandler}>{name}</button>
+  )
+}
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -19,7 +25,8 @@ class App extends Component {
       todos: [],
       value: '',
       newTodo: '',
-      ph: 'Watcha goin to do?'
+      ph: 'Watcha goin to do?',
+      prio: ''
     }
   }
 
@@ -29,7 +36,7 @@ class App extends Component {
     const toDoObj = {
       content: this.state.newTodo,
       id: this.state.todos.length + 1,
-      priority: 1
+      priority: this.state.prio
     }
 
     const todos = this
@@ -58,6 +65,12 @@ class App extends Component {
 
   }
 
+  prioHandler = (priority) => {
+    this.setState({
+      prio: priority
+    })
+  }
+
   renderToDos = (todo) => {
     return (
       this
@@ -72,21 +85,23 @@ class App extends Component {
     return (
       <div>
         <h1>_helping demented people since '79</h1>
-        <div className="container">
           <form className="form" onSubmit={this.addToDo}>
             <Input
               changeHandler={this.changeHandler}
               todoName={this.state.newTodo}
               clearHandler={this.clearHandler}
-              placeHolder={this.state.ph} />
+              placeHolder={this.state.ph}
+            />
+            <PrioBtn name="Low" btnStyle="low" clickHandler={() => this.prioHandler(1)} />
+            <PrioBtn name="Med" btnStyle="med" clickHandler={() => this.prioHandler(2)} />
+            <PrioBtn name="High" btnStyle="high" clickHandler={() => this.prioHandler(3)} />
           </form>
-
+          <span>*Write note and hit priority level!</span>
           <div className="items">
-            <ul className="todos">
+            <ul>
               {this.renderToDos()}
             </ul>
           </div>
-        </div>
       </div>
     );
   }

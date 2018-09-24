@@ -1,6 +1,10 @@
 :root {
   --mainColor: #ff9800;
   --mainColorHov: fuschia;
+  --mediumColor: coral;
+  --mediumColorHov: #f8b49b;
+  --highColor: red;
+  --highColorHov: #fb6969;
 }
 
 body {
@@ -20,7 +24,7 @@ h1 {
 
 input {
   padding: 1em;
-  flex: 1;
+  flex: 1 1 50%;
   font-size: 20px;
   border: 3px solid darkorange;
 }
@@ -32,6 +36,15 @@ button {
   border-right: 0;
   background-color: white;
   flex: 1 5 100%;
+}
+
+.btn-group {
+  display: none;
+  flex: 1;
+}
+
+.active {
+  display: flex;
 }
 
 button.low {
@@ -84,21 +97,24 @@ ul {
 
 li {
   display: block;
-  border: 5px solid var(--mainColor);
   margin: 5px 0;
   padding: 10px;
   cursor: pointer;
   text-align: center;
   font-size: 30px;
-  background: linear-gradient(to right,
-    var(--mainColor) 0%,
-    var(--mainColor) 5px,
-    transparent 5px);
-  background-repeat: repeat-x;
-  background-size: 100%;
 }
 
-li:hover {
+li.low {
+  border: 5px solid var(--mainColor);
+  background: linear-gradient(to right,
+  var(--mainColor) 0%,
+    var(--mainColor) 5px,
+    transparent 5px);
+    background-repeat: repeat-x;
+    background-size: 100%;
+}
+
+li.low:hover {
   background:
     linear-gradient(to right,
     var(--mainColor) 0%,
@@ -107,3 +123,46 @@ li:hover {
   text-decoration: line-through;
   border: 5px solid peachpuff;
 }
+
+li.medium {
+  border: 5px solid var(--mediumColor);
+  background: linear-gradient(to right,
+  var(--mediumColor) 0%,
+    var(--mediumColor) 5px,
+    transparent 5px);
+  background-repeat: repeat-x;
+  background-size: 100%;
+}
+
+li.medium:hover {
+  border: 5px solid var(--mediumColorHov);
+  background: linear-gradient(to right,
+  var(--mediumColor) 0%,
+    var(--mediumColor) 5px,
+    transparent);
+  background-repeat: repeat-x;
+  background-size: 100%;
+  text-decoration: line-through;
+}
+
+li.high {
+  border: 5px solid var(--highColor);
+  background: linear-gradient(to right,
+    var(--highColor) 0%,
+    var(--highColor) 5px,
+    transparent 5px);
+  background-repeat: repeat-x;
+  background-size: 100%;
+}
+
+li.high:hover {
+  border: 5px solid var(--highColorHov);
+  background: linear-gradient(to right,
+  var(--highColor) 0%,
+    var(--highColor) 5px,
+    transparent);
+  background-repeat: repeat-x;
+  background-size: 100%;
+  text-decoration: line-through;
+}
+

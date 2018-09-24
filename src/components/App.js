@@ -6,9 +6,9 @@ const Input = ({todoName, changeHandler, clearHandler, placeHolder}) => {
   )
 }
 
-const ToDo = ({todo, deleteItem}) => {
+const ToDo = ({todo, deleteItem, prioLevelColor}) => {
   return (
-    <li onClick={deleteItem}>{todo.content}</li>
+    <li className={prioLevelColor} onClick={deleteItem}>{todo.content}</li>
   )
 }
 
@@ -25,8 +25,9 @@ class App extends Component {
       todos: [],
       value: '',
       newTodo: '',
-      ph: 'Watcha goin to do?',
-      prio: ''
+      ph: 'Watcha goin to do punk?',
+      prio: '',
+      activeButtons: 'hide'
     }
   }
 
@@ -54,7 +55,10 @@ class App extends Component {
     }
 
   changeHandler = (event) => {
-    this.setState({newTodo: event.target.value})
+    this.setState({
+      newTodo: event.target.value,
+      activeButtons: 'active'
+    })
   }
 
   clearHandler = () => {
@@ -71,12 +75,26 @@ class App extends Component {
     })
   }
 
+  setColor = (priority) => {
+    if (priority == 1) {
+      return 'low'
+    }
+    if (priority == 2) {
+      return 'medium'
+    }
+    else {
+      return 'high'
+    }
+
+    console.log(priority)
+  }
+
   renderToDos = (todo) => {
     return (
       this
         .state
         .todos
-        .map(todo => <ToDo key={todo.id} todo={todo} />)
+        .map(todo => <ToDo key={todo.id} todo={todo} prioLevelColor={ this.setColor(todo.priority) } />)
     )
   }
 
@@ -92,11 +110,13 @@ class App extends Component {
               clearHandler={this.clearHandler}
               placeHolder={this.state.ph}
             />
+          <div className={`btn-group ${this.state.activeButtons}`}>
             <PrioBtn name="Low" btnStyle="low" clickHandler={() => this.prioHandler(1)} />
             <PrioBtn name="Med" btnStyle="med" clickHandler={() => this.prioHandler(2)} />
             <PrioBtn name="High" btnStyle="high" clickHandler={() => this.prioHandler(3)} />
+          </div>
           </form>
-          <span>*Write note and hit priority level!</span>
+          <span>*Write something, then and hit priority level to submit your item!</span>
           <div className="items">
             <ul>
               {this.renderToDos()}

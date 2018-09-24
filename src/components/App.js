@@ -65,8 +65,12 @@ class App extends Component {
     this.setState({newTodo: ''})
   }
 
-  removeItem = ({todo, todos}) => {
-
+  removeItem = (id) => {
+    const todos = this.state.todos;
+    const result = todos.filter((value) => value.id != id)
+    this.setState({
+      todos: result
+    })
   }
 
   prioHandler = (priority) => {
@@ -85,12 +89,10 @@ class App extends Component {
     else {
       return 'high'
     }
-
-    console.log(priority)
   }
 
   renderToDos = (todo) => {
-    const unsorted = this.state.todos.map(todo => <ToDo key={todo.id} todo={todo} prioLevelColor={ this.setColor(todo.priority) } />)
+    const unsorted = this.state.todos.map(todo => <ToDo key={todo.id} todo={todo} prioLevelColor={ this.setColor(todo.priority) } deleteItem={() => this.removeItem(todo.id)}  />)
     const ordered = unsorted.sort((a, b) => a.props.todo.priority > b.props.todo.priority ? -1 : 1)
     return ordered;
   }
@@ -107,13 +109,15 @@ class App extends Component {
               clearHandler={this.clearHandler}
               placeHolder={this.state.ph}
             />
-          <div className={`btn-group ${this.state.activeButtons}`}>
-            <PrioBtn name="Low" btnStyle="low" clickHandler={() => this.prioHandler(1)} />
-            <PrioBtn name="Med" btnStyle="med" clickHandler={() => this.prioHandler(2)} />
-            <PrioBtn name="High" btnStyle="high" clickHandler={() => this.prioHandler(3)} />
-          </div>
+            <div className={`btn-group ${this.state.activeButtons}`}>
+              <PrioBtn name="Low" btnStyle="low" clickHandler={() => this.prioHandler(1)} />
+              <PrioBtn name="Med" btnStyle="med" clickHandler={() => this.prioHandler(2)} />
+              <PrioBtn name="High" btnStyle="high" clickHandler={() => this.prioHandler(3)} />
+            </div>
           </form>
+
           <span>*Write something, then and hit priority level to submit your item!</span>
+
           <div className="items">
             <ul>
               {this.renderToDos()}

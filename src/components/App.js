@@ -90,12 +90,9 @@ class App extends Component {
   }
 
   renderToDos = (todo) => {
-    return (
-      this
-        .state
-        .todos
-        .map(todo => <ToDo key={todo.id} todo={todo} prioLevelColor={ this.setColor(todo.priority) } />)
-    )
+    const unsorted = this.state.todos.map(todo => <ToDo key={todo.id} todo={todo} prioLevelColor={ this.setColor(todo.priority) } />)
+    const ordered = unsorted.sort((a, b) => a.props.todo.priority > b.props.todo.priority ? -1 : 1)
+    return ordered;
   }
 
   render() {

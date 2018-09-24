@@ -14,5 +14,3 @@ How To Get Rollin'
 Next
 ---------------
 * Add TypeScript
-* Proper Ids for items
-* Item deletion

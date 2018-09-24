@@ -14,7 +14,5 @@ How To Get Rollin'
 Next
 ---------------
 * Add TypeScript
-* Priority for items
 * Proper Ids for items
 * Item deletion
-* Theming and some nice UI

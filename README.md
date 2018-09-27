@@ -1,5 +1,7 @@
 # Simple ToDo w/ React Webpack Setup (No CRA)
 
+![](todo.gif)
+
 ## How To Get Rollin'
 
 - git clone desired folder

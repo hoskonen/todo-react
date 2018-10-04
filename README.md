@@ -2,6 +2,8 @@
 
 ![](todo.gif)
 
+[Live Demo](http://www.susirajaco.fi/react-examples/todo/)
+
 ## How To Get Rollin'
 
 - git clone desired folder
